@@ -1,0 +1,220 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath} 
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+\begin{document}
+\title{\huge\textbf{Abgabe 1 für Computergestützte Methoden}}
+\author{Gruppe (67),\vspace{3,5cm}\\Amin Lamri (4222218) \\ Ariyan Atan (4361940)} 
+\date{(29.11.2024)}
+
+
+\maketitle
+\thispagestyle{empty}
+
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+
+
+
+
+\newpage
+\section{Der zentrale Grenzwertsatz}
+
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter (i.i.d.) Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+
+\subsection{Aussage}
+
+Sei $X_1, X_2, \ldots, X_n$ eine Folge von i.i.d. ZV mit dem Erwartungswert $\mu = E(X_i)$ und der Varianz $\sigma^2 = \text{Var}(X_i)$, wobei $0 < \sigma^2 < \infty$ gelte. Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV für $n \to \infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der Lindenberg-Feller-Zentrale-Grenzwertsatz [1,Seite 328], der schwächere Bedingung an die Unabhängigkeit und die identische Verteilung der ZV stellt.}
+\[
+Z_n = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0,1).
+\]
+
+Das bedeutet, dass für große $n$ die Summe der ZV näherungsweise normalverteilt ist mit Erwartungswert $n\mu$ und Varianz $n\sigma^2$:
+\[
+\sum_{i=1}^n X_i \sim N(n\mu, n\sigma^2).
+\]
+
+\subsection{Erklärung der Standardisierung}
+
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert $n\mu$ und teilt durch die Standardabweichung $\sigma\sqrt{n}$. Dies führt zu der obigen Formel (1). Die Darstellung (2) ist für $n \to \infty$ nicht wohldefiniert.
+
+\subsection{Anwendungen}
+
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheorie angewendet. Typische Beispiele sind:
+
+\begin{itemize}
+    \item Schätzung von Mittelwerten aus Stichproben:\\
+    In der praktischen Anwendung spielt der zentrale Grenzwertsatz (ZGS) eine wichtige Rolle, insbesondere bei Stichprobenuntersuchungen. Stellen wir uns vor, ein Wissenschaftler möchte den durchschnittlichen Blutdruck einer bestimmten Population ermitteln. Statt alle Personen dieser Gruppe zu untersuchen, nimmt er mehrere Stichproben. Der ZGS besagt, dass bei ausreichend großen Stichproben der Mittelwert dieser Stichproben annähernd normalverteilt sein wird – und das unabhängig davon, wie der Blutdruck in der Gesamtbevölkerung ursprünglich verteilt ist.
+    
+    \item Fehlerfortpflanzung bei Monte-Carlo-Simulationen:\\
+    Bei Monte-Carlo-Methoden werden oft Summen oder Mittelwerte von Zufallszahlen berechnet. Der zentrale Grenzwertsatz (ZGS) erklärt, warum die Ergebnisse solcher Simulationen bei einer großen Anzahl von Iterationen annähernd normalverteilt sind, unabhängig von der ursprünglichen Verteilung der Zufallszahlen. Das bedeutet, dass selbst wenn die Zufallszahlen aus unterschiedlichen Verteilungen stammen (z. B. gleich- oder exponentiell verteilt), die Summen oder Mittelwerte durch wiederholte Berechnung "geglättet" werden und schließlich einer Normalverteilung folgen. Dies macht die Methode robust und vorhersehbar, da Normalverteilungen gut mathematisch analysiert werden können. Der ZGS zeigt somit, warum Monte-Carlo-Simulationen auch bei komplexen Ausgangsdaten konsistente Ergebnisse liefern.
+
+\end{itemize}
+
+\section{Datenverarbeitung}
+\subsection{Struktur und Aufbau des Datensatzes}
+Der Datensatz enthält verschiedene Informationen zu Fahrradausleihen. Die Spalte "group" gibt die Gruppenzuordnung als numerischen Wert an, während "station" den Namen der Fahrradstation im Textformat enthält. Der Datensatz wurde auf die Station "1 Ave E 18 St" reduziert. Das Datum wird in der Spalte "date" gespeichert, ergänzt durch die numerischen Angaben "day of year", "day of week" und "month of year", die den Tag im Jahr, den Wochentag und den Monat darstellen. Wetterbezogene Daten wie die Niederschlagsmenge ("precipitation"), die Windgeschwindigkeit ("windspeed") sowie die minimale, durchschnittliche und maximale Temperatur ("min temperature", "average temperature", "max temperature") sind ebenfalls enthalten. Schließlich gibt die Spalte "count" die Anzahl der Fahrradausleihen als Wert an. Der Datensatz bietet damit eine Übersicht über die Ausleihstatistiken in Verbindung mit Datum, Station und Wetterbedingungen, wobei für uns  der Fokus auf der Station "1 Ave anE 18 St" liegt.
+
+
+\subsection{Höchste mittlere Temperatur}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Excelneu.png}
+    \caption{Sortierung der Daten}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Tabellensortierung}
+\textbf{Beschreibung der Sortierung}\\Die ursprüngliche Anordnung der Rohdaten machte es schwierig, die höchste mittlere Temperatur zu  ermitteln. Um die Analyse zu erleichtern, wurden die Zellenbeschriftungen in Excel so angepasst, dass eine gezielte Filterung möglich ist. Für unsere Auswertung haben wir uns auf die Daten der Station "Metropolitan Ave und Meeker Ave" konzentriert und den Datensatz entsprechend auf Station 67 reduziert.
+
+
+
+
+\subsection{Tabellenkalkulation}
+\textbf{Berechnung der höchsten mittleren Temperatur} 
+\\Zur Ermittlung der höchsten mittleren Temperatur haben wir die Spalte $Average$ $Temperature$ genutzt und die Werte absteigend sortiert. Man konnte feststellen, dass 83 den höchsten Wert darstellt. Um jedoch eine genauere Analyse zu ermöglichen, war eine Umrechnung in Celsius erforderlich. \\Dafür wurde die folgende passende Umrechnungsformel angewendet:\\Die höchste mittlere Temperatur liegt bei 28,33 Grad Celcius.
+
+    \begin{align*}
+     T_{\text{Celsius}} &= \frac{T_{\text{Fahrenheit}} - 32}{1.8}
+     \end{align*}
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=1\linewidth]{höchsteneu.png}
+        \caption{1.Normalform Excel}
+        \label{fig:enter-label}
+    \end{figure}
+
+\section{Datenhaltung}
+\subsection{1. und 2. Normalform}
+
+
+
+\textbf{1NF}\\Eine Tabelle ist in der 1NF, wenn alle Werte atomar sind, das heißt, es gibt keine mehrfachen oder zusammengesetzten Werte in einem Feld. Außerdem muss jede Zeile eindeutig identifizierbar sein, meist durch einen Primärschlüssel.\\ 
+
+\begin{center}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1_Normalformneu.png} 
+    \caption{1. Normalform Gruppe 67 } 
+    \label{fig:bildname} 
+\end{figure}
+\end{center}
+
+\textbf{2NF}\\Eine Tabelle ist in der 2NF, wenn sie die 1NF erfüllt und alle Nicht-Schlüsselattribute vollständig vom gesamten Primärschlüssel abhängen. Das bedeutet, es dürfen keine \\Teilabhängigkeiten bei zusammengesetzten Schlüsseln existieren.\\Daher haben wir uns dazu entschieden, die 1. Normalform in 3 verschiedene Tabellen darzulegen.
+\begin{center}
+    
+ \begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.1\textwidth]{Station_2_Normalform.png} 
+    \caption{Station 2. Normalform } 
+    \label{fig:bildname} 
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.1\textwidth]{wetter2Normalform.png} 
+    \caption{Wetter 2. Normalform } 
+    \label{fig:bildname} 
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.1\textwidth]{VerleihTabellerichtig.jpeg} 
+    \caption{Verleih 2. Normalform } 
+    \label{fig:bildname} 
+\end{figure} 
+\end{center}
+\textbf{Befehle}\\Nun zeigen wir, welche Befehle von Bedeutung waren, um die 2. Normalform erstellen zu können.
+
+ 
+  \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Station_Tabelle_Befehle.png}
+        \captionof{figure}{Station Tabelle}
+    \end{minipage} \hspace{0.5cm}
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Stationen_Befehle.png}
+        \captionof{figure}{Station Befehl}
+    \end{minipage}
+
+
+
+
+ \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Amin3.jpeg}
+        \captionof{figure}{Wetter Tabelle}
+    \end{minipage} \hspace{0.5cm}
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{wetterbefehl.png}
+        \captionof{figure}{Wetter Befehl}
+    \end{minipage}
+
+
+ \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Verleih_Tabelle_Befehl.png}
+        \captionof{figure}{Verleih Tabelle}
+    \end{minipage} \hspace{0.5cm}
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{VerleihBefehle.jpeg}
+        \captionof{figure}{Verleih Befehl}
+    \end{minipage}
+
+
+\subsection{DDL-SQLite}
+Der Online-SQL-Editor, den wir verwendet haben, erstellt automatisch Tabellen. Daher war es nicht notwendig, einen separaten DDL-Teil für die Erstellung der Datenbankstruktur zu schreiben. Dadurch konnten wir ohne Anpassungen an der Tabellenkalkulation direkt mit den SQL-Abfragen beginnen. Die grundlegenden DDL-Befehle sind jedoch nachfolgend aufgeführt.
+\begin{itemize}
+    \item ALTER DATABASE:Ändert die Eigenschaften oder Einstellungen einer bestehenden Datenbank.
+    \item CREATE TABLE: Erstellt eine neue Tabelle in der Datenbank.
+    \item ALTER TABLE: Passt die Struktur einer vorhandenen Tabelle an, z. B. durch Hinzufügen oder Löschen von Spalten.
+
+     \item DROP TABLE: Entfernt eine Tabelle und alle darin gespeicherten Daten aus der Datenbank.
+
+     \item CREATE INDEX: Legt einen Index an, um die Leistung von Abfragen zu verbessern.
+
+     \item DROP INDEX: Löscht einen bestehenden Index aus der Daten
+
+\end{itemize}
+
+
+
+
+\clearpage
+\section{3.3 SQLite höchste mittlere Temperatur}
+Um die höchste Durchschnittstemperatur mithilfe von SQL zu ermitteln, müssen die Messdaten unserer Station zunächst als CSV Datei in SQL Light importiert werden. Dies entspricht der Umsetzung der ersten Normalform. Anschließend lässt sich die höchste durchschnittliche Temperatur durch bestimmte Escalade wie viele berechnen, die, die im folgenden erläutert werden. Wichtig ist, dass die Temperaturen in der ersten Normalform in Grad ange
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{höchst_mittlere_Temperatur.png} 
+    \caption{Höchste mittlere Temperatur in Grad Celsius (Befehle und Lösung)} 
+    \label{fig:bildname} 
+\end{figure}
+
+\newpage
+\begin{thebibliography}{9}
+\item {Klenke2013} Achimh Klenke. \textit{Wahrscheinlichkeitstheorie}. Springer, 3. Auflage, 2013.
+\item Datenhaltung: \url{https://sqliteonline.com/}
+\item Datenverarbeitung: Microsoft Excel 2013
+\item Moodle Lernraum: Datensatz zum Fahrradverleih\href{}{}
+\item\href{https://GitHub.com/Amin607/Latex-Abgabe-Comet/commit/} 
+{GitHub-Repository}
+\end{thebibliography}
+\end{document}
